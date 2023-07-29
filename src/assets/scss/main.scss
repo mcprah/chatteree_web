@@ -1,0 +1,15 @@
+@import "./fonts";
+@import "bootstrap/scss/bootstrap";
+@import "./typography";
+
+body {
+    font-family: "GeneralSans", sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    color: $color-dark;
+}
+
+
+hr {
+    color: $color-gray;
+}

@@ -1,0 +1,55 @@
+
+$color-light: #FFFFFF;
+$color-dark: #101C26;
+$color-primary: #101C26;
+$color-secondary: #B5BDC5;
+$color-secondary-light: #F7F7F7;
+$color-secondary-light-2: #F1F1F1;
+$color-accent: #F7E353;
+$color-accent-dark: #E2C700;
+$color-success: #00C744;
+$color-danger: #EB000E;
+$color-info: #289DFE;
+$color-gray: #B5BDC5;
+$color-gray-dark: #79838B;
+$color-white: #ffffff;
+$color-background: #ffffff;
+$color-hover: rgba(251, 251, 254, 0.09);
+$color-error: $color-danger;
+
+
+// Colors
+$primary: $color-primary;
+$secondary: $color-accent;
+$warning: $color-danger;
+$light: $color-secondary-light-2;
+$dark: $color-dark;
+$success: $color-success;
+
+$form-check-input-checked-bg-color: $secondary;
+
+
+// Shadows 
+$box-shadow: 0 0.5rem 1rem rgba($color-primary, 0.05);
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($color-primary, 0.075);
+$box-shadow-lg: 0 1rem 3rem rgba($color-primary, 0.175);
+$box-shadow-inset: inset 0 1px 2px rgba($color-primary, 0.075);
+
+// Border Radius
+$border-radius: 8px;
+$border-radius-lg: 26px;
+$border-radius-md: 16px;
+$border-radius-sm: 0.5rem;
+$border-radius-xsm: 4px;
+
+
+// Buttons
+$btn-border-radius: 32px;
+$btn-padding-x: 24px;
+$btn-padding-y: 12px;
+
+
+
+$page-min-height: 100vh;
+$padding-lg: 1rem;
+$padding-md: 0.5rem;
