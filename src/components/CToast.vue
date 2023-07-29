@@ -24,8 +24,14 @@
 </template>
 
 <script>
+import { Toast } from "bootstrap";
+
 export default {
   props: {
+    showToast: {
+      type: Boolean,
+      default: false,
+    },
     message: {
       type: String,
       default: "Message goes here",
@@ -46,11 +52,29 @@ export default {
         ].includes(value),
     },
   },
+  data() {
+    return {};
+  },
   computed: {
     toastClasses() {
       return {
         [`text-bg-${this.variant}`]: true,
       };
+    },
+  },
+  watch: {
+    showToast(newVal) {
+      this.triggerToast(newVal);
+    },
+  },
+  methods: {
+    triggerToast(bool) {
+      const toast = document.getElementById("cToast");
+      const toastBootstrap = Toast.getOrCreateInstance(toast);
+
+      if (bool) {
+        toastBootstrap.show();
+      }
     },
   },
 };

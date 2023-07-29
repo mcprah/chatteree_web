@@ -1,7 +1,7 @@
 <template>
   <main class="container">
     <div class="row align-items-center h-100">
-      <div class="col-md-12 h-100 p-5">
+      <div class="col-md-12 h-100 p-3 p-md-5">
         <div class="d-flex flex-column position-relative mx-auto">
           <CButton
             class="p-0 shadow-sm btn-icon position-absolute top-0 start-0"
@@ -59,7 +59,7 @@
                       class="mt-3"
                       variant="primary"
                       @click="verifyUser()"
-                      :disabled="otpCode.length !== 6"
+                      :disabled="otpCode.length !== 6 || isVerifyingOTP"
                       >Next</CButton
                     >
                   </div>
@@ -79,12 +79,11 @@
         </div>
       </div>
     </div>
-    <CToast :message="message" variant="danger" />
+    <CToast :message="message" variant="danger" :showToast="showToast" />
   </main>
 </template>
 
 <script>
-import { Toast } from "bootstrap";
 import CButton from "../components/CButton.vue";
 import OTPInputs from "../components/OTPInputs.vue";
 import VOtpInput from "vue3-otp-input";
@@ -96,14 +95,17 @@ export default {
   data() {
     return {
       isValidOTP: null,
+      isVerifyingOTP: false,
       otpCode: "",
       message: "",
+      showToast: false,
     };
   },
   watch: {
     isValidOTP(val) {
       if (!val) {
         this.message = "Incorrect confirmation code";
+        this.showToast = true;
       }
     },
   },
@@ -112,24 +114,24 @@ export default {
       if (this.isValidOTP) {
         console.log("verifying user");
       } else {
-        this.showErrorToast();
+        this.showToast = true;
       }
+      setTimeout(() => {
+        this.showToast = false;
+      }, 300);
     },
     handleOTPChange(value) {
-      this.isValidOTP = value == "123456";
       if (value.length == 6) {
-        this.showErrorToast();
+        this.isValidOTP = value == "123456";
       }
     },
     handleOTPComplete(value) {
       this.otpCode = value;
       this.isValidOTP = this.otpCode == "123456";
-      this.showErrorToast();
-    },
-    showErrorToast() {
-      const toastLiveExample = document.getElementById("cToast");
-      const toastBootstrap = Toast.getOrCreateInstance(toastLiveExample);
-      if (!this.isValidOTP) toastBootstrap.show();
+
+      setTimeout(() => {
+        this.showToast = false;
+      }, 300);
     },
   },
 };
