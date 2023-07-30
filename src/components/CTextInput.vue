@@ -1,14 +1,24 @@
 <template>
   <div class="text-input-wrapper d-flex flex-column">
     <label v-if="label" for="txtEmail">{{ label }}</label>
-    <input
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      :type="type"
-      class="form-control"
-      name="txtEmail"
-      id="txtEmail"
-    />
+    <div class="inner-wrapper">
+      <div class="prefix-slot" v-if="$slots.prefix" F>
+        <slot name="prefix"></slot>
+      </div>
+      <input
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        :type="type"
+        class="form-control"
+        :class="{ 'pe-5': $slots.suffix, 'ps-5': $slots.prefix }"
+        name="txtEmail"
+        id="txtEmail"
+        :maxlength="maxlength"
+      />
+      <div class="suffix-slot" v-if="$slots.suffix">
+        <slot name="suffix"></slot>
+      </div>
+    </div>
     <div v-if="hasError" id="helpBlock" class="form-text mb-0">
       {{ errorMessage }}
     </div>
@@ -30,6 +40,10 @@ export default {
       type: String,
       default: "text",
     },
+    maxlength: {
+      type: String,
+      default: "524,288",
+    },
     errorMessage: {
       type: String,
       default: "text",
@@ -40,8 +54,12 @@ export default {
   },
   emits: ["update:modelValue"],
 
-  data() {
-    return {};
+  computed: {
+    // inputClasses() {
+    //   return {
+    //     ""
+    //   }
+    // }
   },
   methods: {},
 };
@@ -76,6 +94,27 @@ export default {
     font-size: 12px;
     color: $color-danger;
     margin-top: 8px;
+  }
+
+  .inner-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .prefix-slot,
+    .suffix-slot {
+      position: absolute;
+      :nth-child(n) {
+        color: $color-gray-dark;
+      }
+    }
+
+    .prefix-slot {
+      left: 24px;
+    }
+    .suffix-slot {
+      right: 24px;
+    }
   }
 }
 </style>

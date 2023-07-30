@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import CButton from "../components/CButton.vue";
+import CButton from '../components/CButton.vue';
 import CTextInput from "../components/CTextInput.vue";
 
 export default {
