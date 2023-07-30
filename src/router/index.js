@@ -19,6 +19,11 @@ const router = createRouter({
             name: "username",
             component: () => import("../views/UsernameView.vue"),
         },
+        {
+            path: "/add-name-dp",
+            name: "add-name-dp",
+            component: () => import("../views/NameProfilePicView.vue"),
+        },
     ],
 });
 
