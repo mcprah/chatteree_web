@@ -41,13 +41,34 @@
                       v-model="username"
                       label="Chatteree ID"
                       :hasError="!isValidUsername"
-                      :errorMessage="validationErrorMessage"
+                      :errorMessage="errorMessage"
+                      @keyup="validationErrorMessage()"
                       :maxlength="charInputLimit"
                       ><template v-slot:prefix>
                         <p class="mb-1">@</p>
                       </template>
                       <template v-slot:suffix>
-                        <p class="m-0">{{ remainingText }}</p>
+                        <CircleLoader v-if="loading" />
+                        <p
+                          class="m-0"
+                          v-else-if="!loading && isValidUsername == null"
+                        >
+                          {{ remainingText }}
+                        </p>
+                        <div v-else>
+                          <img
+                            src="@/assets/icons/icon/interfaces/checkmark-circle.svg"
+                            class=""
+                            alt=""
+                            v-if="isValidUsername"
+                          />
+                          <img
+                            src="@/assets/icons/icon/interfaces/close-circle.svg"
+                            class=""
+                            alt=""
+                            v-else
+                          />
+                        </div>
                       </template>
                     </CTextInput>
 
@@ -77,61 +98,66 @@
 import { calculateRemainingChars } from "../utils/helpers.js";
 import CButton from "../components/CButton.vue";
 import CTextInput from "../components/CTextInput.vue";
+import CircleLoader from "../components/CircleLoader.vue";
 
 export default {
-  components: { CTextInput, CButton },
+  components: { CTextInput, CButton, CircleLoader },
   name: "username",
   data() {
     return {
       isValidUsername: null,
+      loading: false,
       charInputLimit: 9,
       remainingText: "",
       username: "",
+      errorMessage: "",
       toastData: {
         message: "",
         showToast: false,
       },
     };
   },
-  computed: {
-    validationErrorMessage() {
-      if (this.username == null || this.username.isEmpty) {
-        this.isValidUsername = null;
-        return "Username is required.";
-      }
-      if (this.username.length < 3) {
-        this.isValidUsername = null;
-        return "Must be at least 3 characters long";
-      }
-      const usernameRegExp = /^[a-zA-Z0-9_]{3,9}$/;
-      this.isValidUsername = usernameRegExp.test(this.username);
-      return "";
-    },
-  },
+  computed: {},
   watch: {
     username(newVal) {
       this.remainingText = calculateRemainingChars(
         newVal.length,
         this.charInputLimit
       );
+      this.validationErrorMessage;
     },
   },
   mounted() {
     this.remainingText = this.charInputLimit.toString();
   },
   methods: {
-    validateUsername(value) {
-      if (value == null || value.isEmpty) {
+    validationErrorMessage() {
+      this.loading = true;
+      if (this.username == null || this.username.isEmpty) {
         this.isValidUsername = null;
-        return "Username is required.";
+        this.errorMessage = "Username is required.";
+        this.loading = false;
+        return;
       }
-      if (value.length < 3) {
+
+      if (this.username.length < 3) {
+        this.errorMessage = "Must be at least 3 characters long";
         this.isValidUsername = null;
-        return "Must be at least 3 characters long";
+        this.loading = false;
+        return;
       }
+
       const usernameRegExp = /^[a-zA-Z0-9_]{3,9}$/;
-      this.isValidUsername = usernameRegExp.hasMatch(value);
-      return "";
+      this.isValidUsername = usernameRegExp.test(this.username);
+      if (!this.isValidUsername) {
+        this.loading = false;
+        this.errorMessage = "Username not invalid";
+        return;
+      }
+
+      setTimeout(() => {
+        this.loading = false;
+      }, 300);
     },
   },
 };

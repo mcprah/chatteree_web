@@ -85,13 +85,12 @@
 
 <script>
 import CButton from "../components/CButton.vue";
-import OTPInputs from "../components/OTPInputs.vue";
 import VOtpInput from "vue3-otp-input";
 import CToast from "../components/CToast.vue";
 
 export default {
   name: "otp-verification-page",
-  components: { CButton, OTPInputs, VOtpInput, CToast },
+  components: { CButton, VOtpInput, CToast },
   data() {
     return {
       isValidOTP: null,
@@ -113,6 +112,7 @@ export default {
     verifyUser() {
       if (this.isValidOTP) {
         console.log("verifying user");
+        this.$router.replace("/username");
       } else {
         this.showToast = true;
       }
