@@ -35,6 +35,7 @@
                     @submit.prevent="signInUser()"
                     class="d-inline-flex flex-column align-items-center"
                   >
+                    <CProfilePictureUpload />
                     <CTextInput
                       class="mt-3 w-100"
                       v-model="name"
@@ -91,9 +92,10 @@ import { calculateRemainingChars } from "../utils/helpers.js";
 import CButton from "../components/CButton.vue";
 import CTextInput from "../components/CTextInput.vue";
 import CircleLoader from "../components/CircleLoader.vue";
+import CProfilePictureUpload from "../components/CProfilePictureUpload.vue";
 
 export default {
-  components: { CTextInput, CButton, CircleLoader },
+  components: { CTextInput, CButton, CircleLoader, CProfilePictureUpload },
   name: "name-dp",
   data() {
     return {
