@@ -141,7 +141,7 @@ export default {
         return;
       }
 
-      const usernameRegExp = /^[a-zA-Z0-9_]{3,18}$/;
+      const usernameRegExp = /^[a-zA-Z\s]{3,18}$/;
       this.isValidName = usernameRegExp.test(this.name);
       if (!this.isValidName) {
         this.isNameLoading = false;
