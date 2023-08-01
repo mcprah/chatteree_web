@@ -1,9 +1,22 @@
 <template>
-  <div class="p-3 d-flex w-100 chatListItem">
-    <div v-if="chat.from.profile_image_url != ''">
-      <img :src="chat.from.profile_image_url" alt="" class="me-3" />
+  <div class="p-3 d-flex align-items-center w-100 chatListItem">
+    <div
+      class="position-relative me-3"
+      v-if="chat.from.profile_image_url != ''"
+    >
+      <img :src="chat.from.profile_image_url" alt="" />
+      <span
+        class="status-indicator"
+        :class="{ online: chat.from.online_status }"
+      ></span>
     </div>
-    <div class="no-profile me-3" v-else>{{ chat.from.name[0] }}</div>
+    <div class="no-profile me-3 position-relative" v-else>
+      {{ chat.from.name[0] }}
+      <span
+        class="status-indicator"
+        :class="{ online: chat.from.online_status }"
+      ></span>
+    </div>
     <div class="flex-grow-1">
       <div class="d-flex justify-content-between senderDetails">
         <p class="name">{{ chat.from.name }}</p>
@@ -83,6 +96,21 @@ export default {
   .latestMessageSnippet {
     font-size: 13px;
     color: $color-gray-dark;
+  }
+
+  .status-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
+    border: 3px solid $color-white;
+    background: $color-gray;
+    border-radius: 50%;
+
+    &.online {
+      background: $color-success !important;
+    }
   }
 }
 </style>
