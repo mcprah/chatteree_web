@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row vh-100">
-      <div class="col-lg-3">
+      <div class="col-lg-3 ps-0">
         <ChatList />
       </div>
       <div class="col-lg-9">

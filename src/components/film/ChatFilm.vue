@@ -45,8 +45,8 @@ export default {
   cursor: pointer;
   img {
     object-fit: cover;
-    width: 56px;
-    height: 56px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
   }
   .badge {

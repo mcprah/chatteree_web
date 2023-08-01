@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex justify-content-between mb-3">
       <small class="">Favourite chatters</small>
-      <small>23</small>
+      <small>{{ useFilms.films.length }}</small>
     </div>
     <swiper
       :slides-per-view="5"
@@ -28,7 +28,7 @@ import { useFilmStore } from "@/stores/useFilmStore";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
-import ChatFilm from "./ChatFilm.vue";
+import ChatFilm from "@/components/film/ChatFilm.vue";
 
 import "swiper/css";
 import "swiper/css/navigation";

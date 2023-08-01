@@ -1,12 +1,17 @@
 <template>
-  <div v-if="useUser.isFirstTimeUser">
+  <!-- <div class="h-100" v-if="useUser.isFirstTimeUser || useChat.chatList.length == 0"> -->
+  <div class="h-100" v-if="true">
     <FirstTime />
   </div>
-  <div class="" v-else></div>
+  <div class="" v-else>
+    
+  </div>
 </template>
 
 <script>
 import { useUserStore } from "@/stores/useUserStore";
+import { useChatStore } from "@/stores/useChatStore";
+
 import FirstTime from "./FirstTime.vue";
 
 export default {
@@ -15,6 +20,7 @@ export default {
   data() {
     return {
       useUser: useUserStore(),
+      useChat: useChatStore(),
     };
   },
 };
