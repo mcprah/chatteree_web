@@ -89,6 +89,8 @@
 </template>
 <script>
 import { calculateRemainingChars } from "../composables/helpers";
+import { useUserStore } from "@/stores/useUserStore";
+
 import CButton from "../components/CButton.vue";
 import CTextInput from "../components/CTextInput.vue";
 import CircleLoader from "../components/CircleLoader.vue";
@@ -109,6 +111,7 @@ export default {
         message: "",
         showToast: false,
       },
+      useUser: useUserStore(),
     };
   },
   computed: {},
@@ -126,6 +129,12 @@ export default {
   },
   methods: {
     goToChatList() {
+      this.useUser.updateUserData({
+        ...this.useUser.userData,
+        name: this.name,
+        profileImageUrl: "https://i.pravatar.cc/150?u=a042581f4e22432314d",
+        onlineStatus: true,
+      });
       this.$router.replace("/chat");
     },
     validationErrorMessage() {

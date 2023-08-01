@@ -9,5 +9,8 @@ export const useUserStore = defineStore("user", {
         toggleFirstTimeUserState() {
             this.isFirstTimeUser = false;
         },
+        updateUserData(userData) {
+            this.userData = userData;
+        },
     },
 });

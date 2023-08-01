@@ -27,7 +27,7 @@
                 <h1 class="h1 mt-5 mb-2">Check your mail</h1>
                 <p class="p-regular-light">
                   Enter the confirmation code sent to <br />
-                  <strong class="text-dark">kwesiokyere@gmail.com</strong> to
+                  <strong class="text-dark">{{ useUser.userData.email }}</strong> to
                   verify that it is you.
                 </p>
 
@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import { useUserStore } from "@/stores/useUserStore";
+
 import CButton from "../components/CButton.vue";
 import VOtpInput from "vue3-otp-input";
 import CToast from "../components/CToast.vue";
@@ -98,6 +100,7 @@ export default {
       otpCode: "",
       message: "",
       showToast: false,
+      useUser: useUserStore(),
     };
   },
   watch: {

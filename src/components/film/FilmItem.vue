@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { truncateString } from "../../composables/helpers";
+import { truncateString } from "@/composables/helpers";
 
 export default {
   props: {

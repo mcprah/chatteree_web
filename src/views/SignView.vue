@@ -64,8 +64,10 @@
 </template>
 
 <script>
-import CButton from "../components/CButton.vue";
-import CTextInput from "../components/CTextInput.vue";
+import { useUserStore } from "@/stores/useUserStore";
+
+import CButton from "@/components/CButton.vue";
+import CTextInput from "@/components/CTextInput.vue";
 
 export default {
   name: "sign-in-page",
@@ -75,6 +77,7 @@ export default {
     return {
       email: "",
       isValid: null,
+      useUser: useUserStore(),
     };
   },
   watch: {
@@ -91,6 +94,15 @@ export default {
       if (this.email) {
         this.validateEmail();
         if (this.isValid) {
+          // mimicking user login
+          this.useUser.updateUserData({
+            id: "123",
+            profileImageUrl: null,
+            username: null,
+            email: this.email,
+            name: null,
+            onlineStatus: null,
+          });
           this.$router.push("/verify-pin");
         }
       }

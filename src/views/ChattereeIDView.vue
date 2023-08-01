@@ -96,10 +96,12 @@
   </main>
 </template>
 <script>
-import { calculateRemainingChars } from "../composables/helpers";
-import CButton from "../components/CButton.vue";
-import CTextInput from "../components/CTextInput.vue";
-import CircleLoader from "../components/CircleLoader.vue";
+import { useUserStore } from "@/stores/useUserStore";
+import { calculateRemainingChars } from "@/composables/helpers";
+
+import CButton from "@/components/CButton.vue";
+import CTextInput from "@/components/CTextInput.vue";
+import CircleLoader from "@/components/CircleLoader.vue";
 
 export default {
   components: { CTextInput, CButton, CircleLoader },
@@ -116,6 +118,7 @@ export default {
         message: "",
         showToast: false,
       },
+      useUser: useUserStore(),
     };
   },
   computed: {},
@@ -133,6 +136,10 @@ export default {
   },
   methods: {
     submit() {
+      this.useUser.updateUserData({
+        ...this.useUser.userData,
+        username: `@${this.username}`,
+      });
       this.$router.push("/add-name-dp");
     },
     validationErrorMessage() {

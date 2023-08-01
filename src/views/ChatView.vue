@@ -12,10 +12,9 @@
 </template>
 
 <script>
-import ChatConversation from "../components/chat/ChatConversation.vue";
-import ChatList from "../components/chat/ChatList.vue";
-
 import { useUserStore } from "@/stores/useUserStore";
+import ChatConversation from "@/components/chat/ChatConversation.vue";
+import ChatList from "@/components/chat/ChatList.vue";
 
 export default {
   name: "chat-page",

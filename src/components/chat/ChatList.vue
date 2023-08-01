@@ -4,8 +4,15 @@
     <div class="row" id="chatListHeader">
       <div class="col-md-12 d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center" id="user">
-          <img class="profile-pic rounded-pill" />
-          <div class="username ms-3">Kojo Trip</div>
+          <img
+            v-if="useUser.userData.profileImageUrl"
+            :src="useUser.userData.profileImageUrl"
+            class="profile-pic rounded-pill"
+          />
+          <div class="profile-pic rounded-pill" v-else></div>
+          <div class="username ms-3">
+            {{ useUser.userData.name ?? "Kojo Trip" }}
+          </div>
         </div>
         <div class="btn-new-chart">
           <CButton

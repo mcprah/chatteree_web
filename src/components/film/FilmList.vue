@@ -12,7 +12,7 @@
       @slideChange="onSlideChange"
     >
       <swiper-slide v-for="(film, idx) in useFilms.films" :key="idx">
-        <ChatFilm
+        <FilmItem
           @click="() => {}"
           :filmCount="film.unviewedFilmCount"
           :chatterName="film.name"
@@ -28,14 +28,14 @@ import { useFilmStore } from "@/stores/useFilmStore";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 
-import ChatFilm from "@/components/film/ChatFilm.vue";
+import FilmItem from "@/components/film/FilmItem.vue";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
 export default {
   name: "film-list",
-  components: { ChatFilm, Swiper, SwiperSlide },
+  components: { FilmItem, Swiper, SwiperSlide },
   data() {
     return {
       useFilms: useFilmStore(),
