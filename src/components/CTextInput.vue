@@ -2,7 +2,7 @@
   <div class="text-input-wrapper d-flex flex-column">
     <label v-if="label" for="txtEmail">{{ label }}</label>
     <div class="inner-wrapper">
-      <div class="prefix-slot" v-if="$slots.prefix" F>
+      <div class="prefix-slot" v-if="$slots.prefix">
         <slot name="prefix"></slot>
       </div>
       <input
