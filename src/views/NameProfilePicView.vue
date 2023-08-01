@@ -32,7 +32,7 @@
 
                 <div class="row align-items-center text-start w-100">
                   <form
-                    @submit.prevent="signInUser()"
+                    @submit.prevent="goToChatList()"
                     class="d-inline-flex flex-column align-items-center"
                   >
                     <CProfilePictureUpload />
@@ -73,7 +73,7 @@
                     <CButton
                       class="mt-3"
                       variant="primary"
-                      @click="() => {}"
+                      @click="goToChatList()"
                       :disabled="name.length <= 3 || isNameLoading"
                       >Let’s geauxxxx!</CButton
                     >
@@ -125,6 +125,9 @@ export default {
     this.remainingText = this.charInputLimit.toString();
   },
   methods: {
+    goToChatList() {
+      this.$router.replace("/chat");
+    },
     validationErrorMessage() {
       this.isNameLoading = true;
       if (this.name == null || this.name.isEmpty) {

@@ -7,6 +7,7 @@
       </div>
       <input
         :value="modelValue"
+        :placeholder="placeholder"
         @input="$emit('update:modelValue', $event.target.value)"
         :type="type"
         class="form-control"
@@ -32,6 +33,10 @@ export default {
     hasError: {
       type: Boolean,
       default: true,
+    },
+    placeholder: {
+      type: String,
+      default: "",
     },
     label: {
       type: String,
@@ -88,6 +93,12 @@ export default {
       box-shadow: 0 0 0px 4px rgba($color-accent, 0.4);
       background: $color-white;
     }
+
+    &::placeholder {
+      color: $color-gray;
+      font-weight: 400;
+      font-size: 14px;
+    }
   }
   #helpBlock {
     padding-left: 18px;
@@ -110,10 +121,10 @@ export default {
     }
 
     .prefix-slot {
-      left: 24px;
+      left: 16px;
     }
     .suffix-slot {
-      right: 24px;
+      right: 16px;
     }
   }
 }

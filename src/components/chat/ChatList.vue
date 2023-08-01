@@ -1,5 +1,7 @@
 <template>
-  
+  <div class="">
+    <p>Chat List</p>
+  </div>
 </template>
 
 <script>

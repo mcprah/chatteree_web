@@ -52,6 +52,7 @@
                 height="24"
                 width="24"
                 alt=""
+                class="me-3"
               />
             </template>
             Continue with Google

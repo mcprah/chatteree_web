@@ -7,7 +7,9 @@
     :disabled="disabled"
   >
     <slot name="left-icon"></slot>
-    <span class="mx-3"><slot></slot></span>
+
+    <slot></slot>
+
     <slot name="right-icon"></slot>
   </button>
 </template>
