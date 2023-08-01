@@ -96,7 +96,7 @@
   </main>
 </template>
 <script>
-import { calculateRemainingChars } from "../composables/character-limit";
+import { calculateRemainingChars } from "../composables/helpers";
 import CButton from "../components/CButton.vue";
 import CTextInput from "../components/CTextInput.vue";
 import CircleLoader from "../components/CircleLoader.vue";

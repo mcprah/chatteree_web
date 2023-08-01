@@ -6,3 +6,11 @@ export function calculateRemainingChars(charCount, charInputLimit) {
 
     return charInputLimitRef.value - charCountRef.value;
 }
+
+export function truncateString(str, maxLength) {
+    if (str.length > maxLength) {
+        return str.slice(0, maxLength ) + "...";
+    } else {
+        return str;
+    }
+}

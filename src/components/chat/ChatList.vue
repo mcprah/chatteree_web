@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="row my-4">
+    <div class="row my-3">
       <div class="col-md-12">
         <CTextInput
           class="w-100"
@@ -33,6 +33,12 @@
         ></CTextInput>
       </div>
     </div>
+    <div class="row mb-4" v-if="!useUser.isFirstTimeUser">
+      <div class="col-md-12">
+        <FilmList />
+      </div>
+    </div>
+
     <div class="row flex-grow-1 overflow-y-scrol">
       <div
         class="col-md-12 d-flex flex-column justify-content-center align-items-center"
@@ -55,17 +61,20 @@
 </template>
 
 <script>
+import { useUserStore } from "@/stores/useUserStore";
 import CButton from "../CButton.vue";
 import EditIcon from "../icon/EditIcon.vue";
 import CTextInput from "../CTextInput.vue";
+import FilmList from "./FilmList.vue";
 
 export default {
   name: "chat-list",
-  components: { CButton, EditIcon, CTextInput },
+  components: { CButton, EditIcon, CTextInput, FilmList },
   data() {
     return {
       searchQuery: "",
       chatlist: [],
+      useUser: useUserStore(),
     };
   },
   computed: {

@@ -26,5 +26,25 @@
     outline: none;
     font-size: 16px;
   }
+  .swiper-button-next {
+    right: 4px;
+  }
+  .swiper-button-prev {
+    left: 4px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 32px !important;
+    height: 32px !important;
+    background: $color-white !important;
+    border-radius: 50%;
+    box-shadow: $box-shadow-lg;
+
+    &:after {
+      font-size: 12px !important;
+      color: $color-dark !important;
+    }
+  }
 }
 </style>
