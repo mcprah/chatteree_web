@@ -112,7 +112,7 @@ export default {
     verifyUser() {
       if (this.isValidOTP) {
         console.log("verifying user");
-        this.$router.replace("/username");
+        this.$router.replace("/chatteree-id");
       } else {
         this.showToast = true;
       }

@@ -15,9 +15,9 @@ const router = createRouter({
             component: () => import("../views/VerificationView.vue"),
         },
         {
-            path: "/username",
-            name: "username",
-            component: () => import("../views/UsernameView.vue"),
+            path: "/chatteree-id",
+            name: "chatteree-id",
+            component: () => import("../views/ChattereeIDView.vue"),
         },
         {
             path: "/add-name-dp",

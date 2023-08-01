@@ -145,7 +145,7 @@ export default {
       this.isValidName = usernameRegExp.test(this.name);
       if (!this.isValidName) {
         this.isNameLoading = false;
-        this.errorMessage = "Name not invalid";
+        this.errorMessage = "Invalid name";
         return;
       }
 
