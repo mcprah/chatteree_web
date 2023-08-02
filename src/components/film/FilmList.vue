@@ -4,12 +4,20 @@
       <small class="">Favourite chatters</small>
       <small>{{ useFilms.films.length }}</small>
     </div>
-    <swiper
+    <swiper-container
       :slides-per-view="5"
       :space-between="36"
-      navigation
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
+      :centered-slides="false"
+      :navigation="true"
+      :breakpoints="{
+        768: {
+          slidesPerView: 5,
+        },
+      }"
+      @progress="onProgress"
+      @slidechange="onSlideChange"
+      ref="swiperRef"
+      init="false"
     >
       <swiper-slide v-for="(film, idx) in useFilms.films" :key="idx">
         <FilmItem
@@ -19,47 +27,62 @@
           :chatterPhoto="film.photoUrl"
         />
       </swiper-slide>
-    </swiper>
+    </swiper-container>
   </div>
 </template>
 
 <script>
 import { useFilmStore } from "@/stores/useFilmStore";
-import { Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { register } from "swiper/element/bundle";
 
 import FilmItem from "@/components/film/FilmItem.vue";
 
-import "swiper/css";
-import "swiper/css/navigation";
-
 export default {
   name: "film-list",
-  components: { FilmItem, Swiper, SwiperSlide },
+  components: { FilmItem },
   data() {
     return {
       useFilms: useFilmStore(),
-      swiperOptions: {
-        loop: false,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      },
+      spaceBetween: 36,
+      swiperRef: null,
     };
   },
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
+  methods: {
+    onProgress: function (e) {
+      const [swiper, progress] = e.detail;
+    },
+
+    onSlideChange: function (e) {},
+  },
+  created() {
+    register();
+  },
+  mounted() {
+    const swiperContainer = this.$refs.swiperRef;
+    console.log(swiperContainer);
+    const params = {
+      navigation: true,
+
+      injectStyles: [
+        `
+          .swiper-button-next,
+          .swiper-button-prev {
+            width: 32px ;
+            height: 32px ;
+            background: #ffffff ;
+            border-radius: 50%;
+            box-shadow: 0 0.5rem 1rem rgba(16, 28, 38, 0.05);
+            color: #000000;
+          }
+          .swiper-button-next svg ,  .swiper-button-prev svg{
+            width: 20%;
+          }
+      `,
+      ],
     };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-      modules: [Navigation],
-    };
+
+    Object.assign(swiperContainer, params);
+    swiperContainer.initialize();
   },
 };
 </script>

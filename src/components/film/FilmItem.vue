@@ -1,7 +1,7 @@
 <template>
   <div class="d-inline-flex flex-column align-items-center film">
     <div class="position-relative">
-      <img :src="chatterPhoto" alt="Chatter's Photo" />
+      <img :src="chatterPhoto" alt="Chatter's Photo"  />
       <span
         v-if="filmCount > 0"
         class="position-absolute translate-middle badge rounded-pill bg-secondary text-dark"
